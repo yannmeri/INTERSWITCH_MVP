@@ -1,0 +1,34 @@
+.App {
+    background-color: #f5fff0; /* Vert pastel très clair */
+    color: #333;
+    text-align: center;
+    padding: 50px;
+}
+
+.App-header {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #3A7634; /* Vert foncé */
+    margin-bottom: 20px;
+}
+
+.App-header h1 {
+    margin-bottom: 20px;
+}
+
+.App-link {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+}
