@@ -1,5 +1,5 @@
-.App {
-    background-color: #f5fff0; /* Vert pastel très clair */
+/* .App {
+    background-color: #f5fff0;
     color: #333;
     text-align: center;
     padding: 50px;
@@ -8,11 +8,99 @@
 .App-header {
     font-size: 2.8em;
     font-weight: bold;
-    color: #3A7634; /* Vert foncé */
+    color: #3A7634;
     margin-bottom: 20px;
 }
 
 .App-header h1 {
+    margin-bottom: 20px;
+}
+
+.App-link {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+} */
+
+
+/* HomePage.css
+.App {
+    background-color: #f5fff0;
+    color: #333;
+    text-align: center;
+    padding: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.App-header {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #2E7D32;
+    margin-bottom: 20px;
+}
+
+.App-header h1 {
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.App-link {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+    background-color: #388E3C;
+    transform: scale(1.1);
+}
+
+.App {
+    background-image: url('./images/Champ_de_blé_tracteur.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+.App {
+    background-color: #f5fff0;
+    color: #333;
+    text-align: center;
+    padding: 50px;
+}
+
+.App-header {
+    font-size: 3em;
+    font-weight: bold;
+    color: #3A7634;
     margin-bottom: 20px;
 }
 

@@ -1,0 +1,64 @@
+/* MachinesPage.css */
+.machines-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.machines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.machine-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.machine-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.machine-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #4CAF50; /* Bordure verte */
+}
+
+.machine-card h3 {
+    font-size: 1.5em;
+    color: #2E7D32; /* Vert foncé */
+    margin-top: 15px;
+}
+
+.machine-card p {
+    font-size: 1em;
+    color: #555;
+    margin: 10px 0;
+}
+
+.machine-card button {
+    background-color: #4CAF50; /* Vert vif */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.machine-card button:hover {
+    background-color: #388E3C; /* Vert plus foncé */
+    transform: translateY(-2px);
+}

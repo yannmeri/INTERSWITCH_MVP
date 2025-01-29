@@ -1,4 +1,4 @@
-.payment-container {
+/* .payment-container {
     max-width: 600px;
     margin: auto;
     padding: 30px;
@@ -70,4 +70,48 @@
         opacity: 1;
         transform: translateY(0);
     }
+} */
+
+
+/* PaymentPage.css */
+.payment-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.payment-container h2 {
+    font-size: 2em;
+    color: #2E7D32; /* Vert foncé */
+    margin-bottom: 20px;
+}
+
+select, input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #4CAF50; /* Vert vif */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #388E3C; /* Vert plus foncé */
+    transform: translateY(-2px);
 }
