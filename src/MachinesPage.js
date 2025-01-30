@@ -34,3 +34,4 @@ const MachinesPage = () => {
 };
 
 export default MachinesPage;
+
