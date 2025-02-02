@@ -1,0 +1,16 @@
+POST http://localhost:3000/initiate-payment
+
+{
+  "customerId": "USER123",
+  "amount": "10000.00",
+  "authData": "ENCRYPTED_CARD_DATA",
+  "transactionRef": "TXN-123abc"
+}
+
+POST http://localhost:3000/authenticate-otp
+
+{
+  "paymentId": "474552283",
+  "otp": "123456",
+  "transactionId": "fhfgrgte"
+}

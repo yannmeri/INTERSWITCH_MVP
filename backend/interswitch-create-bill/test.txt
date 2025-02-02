@@ -1,0 +1,16 @@
+POST http://localhost:3000/create-bill
+
+
+{
+  "merchantCode": "MX6072",
+  "payableCode": "9405967",
+  "amount": "5000",
+  "redirectUrl": "https://webpay-ui.k8.isw.la/demo-response",
+  "customerId": "johndoe@gmail.com",
+  "currencyCode": "566",
+  "customerEmail": "johndoe@gmail.com",
+  "transactionReference": "BILL-ABC123"
+}
+
+
+GET http://localhost:3000/confirm-bill?merchantCode=MX6072&reference=3WuIKFZFvGWra4e&amount=5000
