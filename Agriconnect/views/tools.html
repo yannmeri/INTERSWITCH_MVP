@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tools - Agriconnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    async function fetchTools() {
+      const res = await fetch('/api/tools');
+      if (res.status === 401) {
+        alert('You need to log in first.');
+        window.location.href = '/login';
+        return;
+      }
+      const data = await res.json();
+      const container = document.getElementById('tools-container');
+      container.innerHTML = '';
+
+      data.forEach(tool => {
+        const div = document.createElement('div');
+        div.classList.add('tool-card');
+
+        if (tool.image_path) {
+          const img = document.createElement('img');
+          img.src = tool.image_path;
+          img.alt = tool.name;
+          div.appendChild(img);
+        }
+
+        const nameEl = document.createElement('h3');
+        nameEl.textContent = tool.name;
+        div.appendChild(nameEl);
+
+        const prices = document.createElement('p');
+        prices.textContent = `Buy: ${tool.buy_price} NGN | Rent: ${tool.rent_price} NGN`;
+        div.appendChild(prices);
+
+        const buyBtn = document.createElement('button');
+        buyBtn.textContent = 'Buy';
+        buyBtn.onclick = () => createBill(tool.id, 'buy');
+        div.appendChild(buyBtn);
+
+        const rentBtn = document.createElement('button');
+        rentBtn.textContent = 'Rent';
+        rentBtn.onclick = () => createBill(tool.id, 'rent');
+        div.appendChild(rentBtn);
+
+        const chatBtn = document.createElement('button');
+        chatBtn.textContent = 'Chat';
+        chatBtn.onclick = () => {
+          window.location.href = `/chat?owner=${encodeURIComponent(tool.owner_email)}&toolId=${tool.id}`;
+        };
+        div.appendChild(chatBtn);
+
+        container.appendChild(div);
+      });
+    }
+
+    async function createBill(toolId, action) {
+      const res = await fetch('/create-bill', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ toolId, action })
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.location.href = data.data.paymentUrl;
+      } else {
+        alert('Error: ' + data.message);
+      }
+    }
+
+    window.onload = fetchTools;
+  </script>
+  <style>
+    .tool-card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      width: 220px;
+      background: #fff;
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tool-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .tool-card img {
+      display: block;
+      margin: 0 auto 10px;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agriconnect</h1>
+    <nav id="nav-links">
+      <a href="/tools">Tools</a> |
+      <a href="/profile">Profile</a> |
+      <a href="/notifications">Notifications</a> |
+      <a href="/chat">Chat</a> |
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Available Tools</h2>
+    <div id="tools-container"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agriconnect</p>
+  </footer>
+</body>
+</html>

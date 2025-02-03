@@ -1,0 +1,159 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef7ee;
+    height: 100%;
+  }
+  
+  header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+  
+  nav {
+    font-size: 18px;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+    color: #dff0d8;
+  }
+  
+  .container {
+    padding: 20px;
+    min-height: calc(100vh - 120px);
+    box-sizing: border-box;
+  }
+  
+  footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select,
+  input[type="number"] {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Grille d'images sur la homepage */
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .grid-item {
+    width: 250px;
+    height: 180px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  
+  .grid-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .home-description {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Tool cards */
+  .tool-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    width: 220px;
+    background: #fff;
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
+  }
+  
+  .tool-card:hover {
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  }
+  
+  .tool-card img {
+    display: block;
+    margin: 0 auto 10px;
+  }
+  
+  /* Notifications */
+  .notification {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  

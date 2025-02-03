@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add a Tool - Agriconnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Agriconnect</h1>
+    <nav id="nav-links">
+        <a href="/profile">Profile</a> |
+        <a href="/notifications">Notifications</a> |
+        <a href="/chat">Chat</a> |
+        <a href="/logout">Logout</a>
+      </nav>
+  </header>
+
+  <div class="container">
+    <h2>Add a New Tool</h2>
+    <form action="/add-tool" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label>Tool Name:</label>
+        <input type="text" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label>Buy Price (NGN):</label>
+        <input type="number" name="buyPrice" required />
+      </div>
+
+      <div class="form-group">
+        <label>Rent Price (NGN):</label>
+        <input type="number" name="rentPrice" required />
+      </div>
+
+      <div class="form-group">
+        <label>Tool Image:</label>
+        <input type="file" name="toolImage" accept="image/*" />
+      </div>
+
+      <button type="submit">Add Tool</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agriconnect</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Agriconnect - Login</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    async function loginUser(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        if (res.ok) {
+          window.location.href = '/tools';
+        } else {
+          const data = await res.json();
+          alert('Invalid credentials: ' + (data.error || 'Wrong email or password.'));
+        }
+      } catch (error) {
+        alert('Error logging in: ' + error.message);
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Agriconnect</h1>
+    <nav id="nav-links">
+      <a href="/">Home</a>
+      <a href="/register">Register</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Login</h2>
+    <form onsubmit="loginUser(event)">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" id="password" required />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <footer>
+    <p>&copy; 2025 Agriconnect</p>
+  </footer>
+</body>
+</html>

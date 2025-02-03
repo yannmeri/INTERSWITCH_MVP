@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agriconnect - Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    button, nav a {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover, nav a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #nav-links {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #nav-links a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    #nav-links a:hover {
+      color: #dff0d8;
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
+    .image-box {
+      flex: 0 0 auto;
+      width: 250px;
+      height: 180px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .image-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .home-description {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agriconnect</h1>
+    <nav id="nav-links">
+      <a href="/login">Login</a> | <a href="/register">Register</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="image-row">
+      <div class="image-box"><img src="/images/farm1.jpeg" alt="Farmers using tool 1"></div>
+      <div class="image-box"><img src="/images/farm2.jpeg" alt="Farmers using tool 2"></div>
+      <div class="image-box"><img src="/images/farm3.jpeg" alt="Farmers using tool 3"></div>
+    </div>
+
+    <div class="home-description">
+      <h2>Welcome to Agriconnect</h2>
+      <p>
+        Agriconnect connects agricultural tool enterprises with farmers. Enterprises list their tools for sale or rent while farmers can easily choose and secure the equipment they need to improve their fields.
+      </p>
+      <p>
+        Explore our platform to discover a wide range of high-quality tools and experience secure, dynamic payments through our integrated gateway.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agriconnect</p>
+  </footer>
+
+  <script>
+    async function updateNav() {
+      try {
+        const response = await fetch('/api/profile');
+        if (response.ok) {
+          document.getElementById('nav-links').innerHTML = `
+            <a href="/tools">Tools</a> |
+            <a href="/profile">Profile</a> |
+            <a href="/notifications">Notifications</a> |
+            <a href="/chat">Chat</a> |
+            <a href="/logout">Logout</a>
+          `;
+        } else {
+          document.getElementById('nav-links').innerHTML = `
+            <a href="/login">Login</a> |
+            <a href="/register">Register</a>
+          `;
+        }
+      } catch (err) {
+        document.getElementById('nav-links').innerHTML = `
+          <a href="/login">Login</a> |
+          <a href="/register">Register</a>
+        `;
+      }
+    }
+    updateNav();
+  </script>
+</body>
+</html>

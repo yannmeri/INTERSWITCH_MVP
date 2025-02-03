@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications - Agriconnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    async function loadNotifications() {
+      const res = await fetch('/api/notifications');
+      if (res.status === 401) {
+        alert('You need to log in first.');
+        window.location.href = '/login';
+        return;
+      }
+      const data = await res.json();
+      const container = document.getElementById('notif-container');
+      container.innerHTML = '';
+
+      data.forEach(notif => {
+        const div = document.createElement('div');
+        div.style.border = '1px solid #ccc';
+        div.style.padding = '10px';
+        div.style.margin = '10px';
+        div.style.backgroundColor = notif.is_read ? '#f0f0f0' : '#ffffff';
+
+        const msg = document.createElement('p');
+        msg.textContent = notif.message;
+        div.appendChild(msg);
+
+        const date = document.createElement('small');
+        date.textContent = `Created At: ${notif.created_at}`;
+        div.appendChild(date);
+
+        if (!notif.is_read) {
+          const readBtn = document.createElement('button');
+          readBtn.textContent = 'Mark as read';
+          readBtn.onclick = () => markAsRead(notif.id, div);
+          div.appendChild(document.createElement('br'));
+          div.appendChild(readBtn);
+        }
+        container.appendChild(div);
+      });
+    }
+
+    async function markAsRead(notificationId, divEl) {
+      const res = await fetch('/api/notifications/read', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ notificationId })
+      });
+      const data = await res.json();
+      if (data.success) {
+        divEl.style.backgroundColor = '#f0f0f0';
+        divEl.querySelector('button').remove(); // remove the "Mark as read" button
+      } else {
+        alert('Error marking notification as read');
+      }
+    }
+
+    window.onload = loadNotifications;
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Agriconnect</h1>
+    <nav id="nav-links">
+        <a href="/tools">Tools</a> |
+        <a href="/profile">Profile</a> |
+        <a href="/chat">Chat</a> |
+        <a href="/logout">Logout</a>
+      </nav>
+      
+  </header>
+
+  <div class="container">
+    <h2>Notifications</h2>
+    <div id="notif-container"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agriconnect</p>
+  </footer>
+</body>
+</html>

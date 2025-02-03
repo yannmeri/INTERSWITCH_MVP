@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Agriconnect - Chat</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .chat-container {
+      max-width: 800px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .chat-header {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .message-container {
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    .message {
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      max-width: 70%;
+    }
+    .message.sender {
+      background-color: #dff0d8;
+      align-self: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+    .message.receiver {
+      background-color: #f2dede;
+      align-self: flex-start;
+      text-align: left;
+      margin-right: auto;
+    }
+    .chat-form {
+      display: flex;
+      gap: 10px;
+    }
+    .chat-form input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .chat-form button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .chat-form button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agriconnect</h1>
+    <nav id="nav-links">
+      <a href="/tools">Tools</a> |
+      <a href="/profile">Profile</a> |
+      <a href="/notifications">Notifications</a> |
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="chat-container">
+      <div class="chat-header" id="chat-header">
+        Chat
+      </div>
+      <div class="message-container" id="messageContainer">
+      </div>
+      <div class="chat-form">
+        <input type="text" id="chatMessage" placeholder="Type your message..." />
+        <button id="sendButton">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agriconnect</p>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    function getParameterByName(name, url = window.location.href) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    const ownerEmail = getParameterByName('owner');
+    if (ownerEmail) {
+      document.getElementById('chat-header').textContent = 'Chat with ' + ownerEmail;
+    }
+
+    function addMessage(message, type) {
+      const container = document.getElementById('messageContainer');
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message');
+      msgDiv.classList.add(type);
+      msgDiv.textContent = message;
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    socket.on('newMessage', (data) => {
+      if (data.senderEmail === ownerEmail) {
+        addMessage(data.message, 'receiver');
+      } else {
+        addMessage(data.message, 'sender');
+      }
+    });
+
+    document.getElementById('sendButton').addEventListener('click', () => {
+      const messageInput = document.getElementById('chatMessage');
+      const message = messageInput.value.trim();
+      if (!message) return;
+      
+      const senderEmail = 'currentUser@example.com';
+
+      const data = {
+        senderEmail: senderEmail,
+        receiverEmail: ownerEmail,
+        message: message
+      };
+      socket.emit('sendMessage', data);
+      addMessage(message, 'sender');
+      messageInput.value = '';
+    });
+
+</script>
+</body>
+</html>
